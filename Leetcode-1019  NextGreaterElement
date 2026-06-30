@@ -1,0 +1,36 @@
+class Solution {
+    public int[] nextGreaterElement(int[] nums){
+		int n=nums.length;
+		int[] ans=new int[n];
+		Stack<Integer>st=new Stack<>();
+		for(int i=n-1;i>=0;i--){
+		    while(!st.isEmpty() &&st.peek()<=nums[i]){
+		        st.pop();
+		    }
+		    if(st.isEmpty()){
+		        ans[i]=0;
+		    }else{
+		        ans[i]=st.peek();
+		    }
+		    st.push(nums[i]);
+		}
+        return ans;
+	}
+    public int[] nextLargerNodes(ListNode head) {
+        int n=0;
+        ListNode curr=head;
+        while(curr!=null){
+            n++;
+            curr=curr.next;
+        }
+        int arr[]=new int[n];
+        curr=head;
+        int i=0;
+        while(curr!=null){
+            arr[i++]=curr.val;
+            curr=curr.next;
+        }
+        return nextGreaterElement(arr);
+
+    }
+}
