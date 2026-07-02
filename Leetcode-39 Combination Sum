@@ -1,0 +1,23 @@
+class Solution {
+    void fun(int i,int[]nums,List<Integer>v1,List<List<Integer>>ans,int s,int target)
+{
+    if(i>=nums.length||s>target){
+       // ans.add(new ArrayList<>(v1));
+        return;
+    }
+    if(s==target){
+        ans.add(new ArrayList<>(v1));
+        return;
+    }
+    List<Integer>op=new ArrayList<>(v1);
+    op.add(nums[i]);
+    fun(i,nums,op,ans,s+nums[i],target);
+    fun(i+1,nums,v1,ans,s,target);
+}  
+    public List<List<Integer>> combinationSum(int[] nums, int target) {
+         List<List<Integer>>ans=new ArrayList<>();
+        List<Integer>v1=new ArrayList<>();
+        fun(0,nums,v1,ans,0,target);
+        return ans;
+    }
+}
