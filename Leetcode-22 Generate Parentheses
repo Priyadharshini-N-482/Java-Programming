@@ -1,0 +1,19 @@
+class Solution {
+    void fun(int cnt,int n,String tmp,List<String>ans,int a,int b){
+        if(b>a)return;
+        if(cnt==2*n){
+            if(a==b){
+                ans.add(tmp);
+            }
+            return;
+        }
+        fun(cnt+1,n,tmp+"(",ans,a+1,b);
+        fun(cnt+1,n,tmp+")",ans,a,b+1);
+    }
+    public List<String> generateParenthesis(int n) {
+        List<String>ans=new ArrayList<>();
+        String tmp=new String();
+        fun(0,n,tmp,ans,0,0);
+        return ans;
+    }
+}
